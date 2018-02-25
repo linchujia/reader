@@ -1,0 +1,61 @@
+<!--logs.wxml-->
+<!-- <view class="container log-list"> -->
+  <!-- <block wx:for="{{logs}}" wx:for-item="log" wx:key="*this">
+    <text class="log-item">{{index + 1}}. {{log}}</text>
+  </block> -->
+<!-- </view>   -->
+<!-- 文本 -->
+<view class="container" style="background:{{bodyColor}}">
+  <!-- 中间层，点击，头部底部显示 -->
+  <view class="artical-action-mid" bindtap="midaction"  bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"></view>
+  <!-- 主体内容 -->
+  <scroll-view  scroll-top="{{scroll_top}}" class="m-read-content" style="font-size:{{initFontSize}}px;" bindscroll="scrollContain" bindscrolltolower="bindscrolltolower" >
+    {{Text}}
+  </scroll-view>
+</view>
+<!-- 字体调节 -->
+  <view class="top-nav-pannel font-container" style="display:{{ziti}}">
+    <view class="child-mod">
+     <view class="span">字号</view>
+     <text class="spe-button" bindtap="bindBig">大</text>
+     <text class="spe-button" style="margin-left:10px;" bindtap="bindSmall">小</text>
+    </view>
+    <view class="child-mod">
+      <view class="span">背景</view>
+      <block wx:for="{{colorArr}}" wx:for-item="color" wx:key="this">
+        <view class="bk-container {{_num==index?'bk-container-current':''}}" data-num="{{index}}" style="background-color:{{color.value}}" bindtap="bgChange"></view>
+      </block>
+    </view>
+  </view>
+  <!-- 上一页下一页 -->
+  <view class="m-button-bar" style="display:{{zj}}">
+    <view class="u-tab">
+      <view class="uli" bindtap="lastPage">上一页</view>
+      <view class="uli" style="border-right:none" bindtap="nextPage">下一页</view>
+    </view>
+  </view>
+  <!-- 底部 -->
+  <view class="bottom-nav bottom_nav" style="display:{{nav}}">
+    <view class="item menu-button">
+      <view class="item-warp">
+        <view class="icon-menu"></view>
+        <view class="icon-text">目录</view>
+      </view>
+    </view>
+    <view class="item current" bindtap="zitiaction">
+      <view class="item-warp">
+        <view class="icon-ft"></view>
+        <view class="icon-text">字体</view>
+      </view>
+    </view>
+    <view class="item" bindtap="dayNight">
+      <view class="item-warp" wx:if="{{daynight}}">
+        <view class="icon-day"></view>
+        <view class="icon-text">白天</view>
+      </view>
+      <view class="item-warp" wx:else>
+        <view class="icon-night"></view>
+        <view class="icon-text">夜间</view>
+      </view>
+    </view>
+  </view>
